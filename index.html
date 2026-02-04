@@ -10,25 +10,24 @@
 body {
   margin: 0;
   height: 100vh;
-  background: linear-gradient(135deg, #ffb3d9, #ffe6f2);
+  background: linear-gradient(135deg, #ffb3d9, #ff4d6d);
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  font-family: 'Pacifico', cursive;
 }
 
 .container {
   text-align: center;
-  z-index: 2;
 }
 
 h1 {
   font-family: 'Luckiest Guy', cursive;
-  font-size: 3.5em;
-  background: linear-gradient(45deg, #ff004c, #ff7aa2);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: pulse 1.2s infinite;
+  font-size: 3.2em;
+  color: white;
+  text-shadow: 0 0 10px rgba(255,255,255,0.6);
+  animation: pulse 1.3s infinite;
 }
 
 @keyframes pulse {
@@ -38,24 +37,31 @@ h1 {
 }
 
 button {
-  font-family: 'Pacifico', cursive;
   font-size: 1.8em;
   padding: 15px 45px;
   border: none;
   border-radius: 40px;
   cursor: pointer;
+  font-family: 'Pacifico', cursive;
 }
 
 #si {
-  background: #ff004c;
-  color: white;
-  margin-right: 30px;
-  box-shadow: 0 0 20px #ff004c;
+  background: white;
+  color: #ff4d6d;
+  margin-right: 20px;
 }
 
 #no {
-  background: #ccc;
+  background: #ddd;
   position: absolute;
+}
+
+.finale {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  text-align: center;
 }
 
 .cuore {
@@ -68,47 +74,13 @@ button {
   0% { transform: translateY(-10vh); }
   100% { transform: translateY(110vh); }
 }
-
-.finale {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.finale img {
-  width: 320px;
-}
-
-.finale h1 {
-  font-size: 3em;
-}
-
-.fuochi {
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(circle at center, #ffb3d9, #ff4d6d);
-  animation: glow 1.5s infinite alternate;
-  display: none;
-  z-index: 0;
-}
-
-@keyframes glow {
-  from { opacity: 0.8; }
-  to { opacity: 1; }
-}
-
 </style>
 </head>
 
 <body>
 
-<div class="fuochi"></div>
-
-<audio id="musica" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
-
 <div class="container" id="domanda">
-  <h1>Alessandro, vuoi essere il mio Valentino? 💖</h1>
+  <h1>Alessandro,<br>vuoi essere il mio Valentino? 💖</h1>
   <button id="si">SÌ 😍</button>
   <button id="no">NO 🙄</button>
 </div>
@@ -116,7 +88,7 @@ button {
 <div class="finale" id="finale">
   <h1>🐱💋🐱</h1>
   <h1>I meow you 💖</h1>
-  <p style="font-size:2em;">– Cecilia</p>
+  <h2>– Cecilia</h2>
 </div>
 
 <script>
@@ -124,8 +96,6 @@ const noBtn = document.getElementById("no");
 const siBtn = document.getElementById("si");
 const domanda = document.getElementById("domanda");
 const finale = document.getElementById("finale");
-const fuochi = document.querySelector(".fuochi");
-const musica = document.getElementById("musica");
 
 noBtn.addEventListener("mouseover", () => {
   const x = Math.random() * (window.innerWidth - 120);
@@ -137,8 +107,6 @@ noBtn.addEventListener("mouseover", () => {
 siBtn.addEventListener("click", () => {
   domanda.style.display = "none";
   finale.style.display = "flex";
-  fuochi.style.display = "block";
-  musica.play();
   pioggiaCuori();
 });
 
@@ -151,7 +119,7 @@ function pioggiaCuori() {
     cuore.style.animationDuration = (2 + Math.random() * 3) + "s";
     document.body.appendChild(cuore);
     setTimeout(() => cuore.remove(), 5000);
-  }, 200);
+  }, 250);
 }
 </script>
 
